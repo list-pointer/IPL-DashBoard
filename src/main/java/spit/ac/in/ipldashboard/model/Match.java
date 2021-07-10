@@ -2,12 +2,16 @@ package spit.ac.in.ipldashboard.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
+@Entity
 public class Match {
 
-    private long id;
+    @Id
+    private String id;
     private String city;
     private LocalDate date;
     private String playerOfMatch;
