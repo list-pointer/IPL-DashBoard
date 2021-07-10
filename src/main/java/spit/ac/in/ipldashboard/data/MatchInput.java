@@ -2,6 +2,7 @@ package spit.ac.in.ipldashboard.data;
 
 import lombok.Data;
 
+//This class is used to store the data from csv file on temp basis so that only required data can be used to shift in the entity class
 @Data
 public class MatchInput {
 

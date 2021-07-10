@@ -5,6 +5,8 @@ import spit.ac.in.ipldashboard.model.Match;
 
 import java.time.LocalDate;
 
+//This class is used to take the data from the csv file and put it into the Match class
+//Match class is the Entity class which will store the data in database
 public class MatchDataProcessor implements ItemProcessor<MatchInput, Match> {
 
 

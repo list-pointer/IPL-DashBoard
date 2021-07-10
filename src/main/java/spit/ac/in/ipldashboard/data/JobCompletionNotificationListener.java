@@ -8,8 +8,10 @@ import org.springframework.batch.core.listener.JobExecutionListenerSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import spit.ac.in.ipldashboard.model.Match;
 
+
+//This class is the listener class which will get executed when the
+//        batch Processing and writing is completed or all the steps
 @Component
 public class JobCompletionNotificationListener extends JobExecutionListenerSupport {
 
@@ -24,14 +26,8 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
     @Override
     public void afterJob(JobExecution jobExecution) {
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("!!! JOB FINISHED! Time to verify the results");
-
-//            jdbcTemplate.query("SELECT team1, team2 FROM match",
-//                    (rs, row) -> new Match(
-//                            rs.getString(1),
-//                            rs.getString(2))
-//            ).forEach(person -> log.info("Found <" + person + "> in the database."));
         }
     }
 }

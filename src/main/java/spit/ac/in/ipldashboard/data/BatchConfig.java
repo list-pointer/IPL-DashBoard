@@ -1,7 +1,5 @@
 package spit.ac.in.ipldashboard.data;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -20,13 +18,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import spit.ac.in.ipldashboard.model.Match;
 
+import javax.sql.DataSource;
+
+
+//This is the spring batch configuration class
+//We write and enable our batch steps in here
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
 
-    private final String[] FIELD_NAMES = new String[] { "id", "city", "date", "player_of_match", "venue",
+    //fileds name to be updated in the table
+    private final String[] FIELD_NAMES = new String[]{"id", "city", "date", "player_of_match", "venue",
             "neutral_venue", "team1", "team2", "toss_winner", "toss_decision", "winner", "result", "result_margin",
-            "eliminator", "method", "umpire1", "umpire2" };
+            "eliminator", "method", "umpire1", "umpire2"};
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -34,6 +38,8 @@ public class BatchConfig {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
+    //This bean used to read the data from the csv file
+//    this step is executed for each row
     @Bean
     public FlatFileItemReader<MatchInput> reader() {
         return new FlatFileItemReaderBuilder<MatchInput>().name("MatchItemReader")
@@ -45,11 +51,15 @@ public class BatchConfig {
                 }).build();
     }
 
+    //This bean used to process the data from the csv file
+//    this step is executed for each row
     @Bean
     public MatchDataProcessor processor() {
         return new MatchDataProcessor();
     }
 
+    //This bean used to write the data into the database
+//    this step is executed for each row
     @Bean
     public JdbcBatchItemWriter<Match> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Match>()
@@ -59,6 +69,8 @@ public class BatchConfig {
                 .dataSource(dataSource).build();
     }
 
+    //this listener listens and gets executed when the batch job is completed
+//    in this case we have only 1 step
     @Bean
     public Job importUserJob(JobCompletionNotificationListener listener, Step step1) {
         return jobBuilderFactory
@@ -70,6 +82,8 @@ public class BatchConfig {
                 .build();
     }
 
+
+    //This will execute the reader processor and writer
     @Bean
     public Step step1(JdbcBatchItemWriter<Match> writer) {
         return stepBuilderFactory
