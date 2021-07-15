@@ -25,6 +25,7 @@ public class TeamController {
     }
 
 
+    //returns all teams data
     @GetMapping("/team")
     public Iterable<Team> getAllTeam() {
         return this.teamRepository.findAll();
@@ -45,6 +46,7 @@ public class TeamController {
 
         return this.matchRepository.getMatchesByTeamBetweenDates(teamName, startDate, endDate);
     }
+
 }
 
 
