@@ -1,16 +1,18 @@
 package spit.ac.in.ipldashboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spit.ac.in.ipldashboard.Repository.MatchRepository;
 import spit.ac.in.ipldashboard.Repository.TeamRepository;
+import spit.ac.in.ipldashboard.model.Match;
 import spit.ac.in.ipldashboard.model.Team;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @RestController
-@CrossOrigin
+@CrossOrigin //This annotation is used for allowing sharing data on other servers.
+// basically other domains can make a call to this data
 public class TeamController {
 
     @Autowired
@@ -34,6 +36,14 @@ public class TeamController {
         team.setMatches(matchRepository.findLatestMatchesbyTeam(teamName, 4));
 
         return team;
+    }
+
+    @GetMapping("/team/{teamName}/matches")
+    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year) {
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year + 1, 1, 1);
+
+        return this.matchRepository.getMatchesByTeamBetweenDates(teamName, startDate, endDate);
     }
 }
 
