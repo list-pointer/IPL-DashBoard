@@ -2,12 +2,9 @@ import {React, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {MatchDetailedCard} from '../components/MatchDetailedCard';
 import {YearSelector} from '../components/YearSelector';
-
 import './css/MatchPage.scss';
 
 export const MatchPage = () => {
-
-
     const [matches, setMatches] = useState([]);
     const {teamName, year} = useParams();
     useEffect(

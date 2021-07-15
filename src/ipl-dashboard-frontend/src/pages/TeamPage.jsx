@@ -23,9 +23,6 @@ export const TeamPage = () => {
                 const response = await fetch(`http://localhost:8080/team/${teamName}`);
                 const data = await response.json();
                 setTeam(data);
-                console.log(data);
-                // console.log(team.toString());
-
             };
             fetchTeam();
         }, [teamName] //components loads when hook is changed
@@ -48,7 +45,7 @@ export const TeamPage = () => {
                 <MatchDetailedCard teamName={team.teamName} match={team.matches[0]}/>
             </div>
 
-            {team.matches.slice(1).map(match => <MatchSmallCard teamName={team.teamName} match={match}/>)}
+            {team.matches.slice(1).map(match => <MatchSmallCard key={match.id} teamName={team.teamName} match={match}/>)}
             {/*this will call the match small card for the no of matches present*/}
             {/*console.log({team.matches});*/}
             <div className="more-link">

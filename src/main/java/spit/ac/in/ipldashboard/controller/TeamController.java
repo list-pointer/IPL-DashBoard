@@ -24,7 +24,6 @@ public class TeamController {
         this.matchRepository = matchRepository;
     }
 
-
     //returns all teams data
     @GetMapping("/team")
     public Iterable<Team> getAllTeam() {
