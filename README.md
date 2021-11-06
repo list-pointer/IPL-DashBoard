@@ -1,11 +1,11 @@
-# IPL Dashboard
-IPL dashboard is a modern web-based platform that renders data for IPL matches.
+# Interactive IPL Board (IIB)
+Interactive IPL Board is a modern web-based platform that renders data for IPL matches.
 
 ![image](https://user-images.githubusercontent.com/41852838/125911240-137dac5c-a975-424d-96bb-6458cbd892ee.png) ![image](https://user-images.githubusercontent.com/41852838/125911389-f33bf4d7-0bf3-4300-a516-09b53c1dc4af.png)
 
 
 ## About the Project
-- IPL dashboard is a modern web-based platform that renders data for IPL matches from 2007 to 2020.
+- Interactive IPL Board is a modern web-based platform that renders data for IPL matches from 2007 to 2020.
 - Kaggle dataset provides raw data for more than 500 matches and 10 teams.
 - Data is injested in the database using Spring Batch.
 - React renders the data on the screen using a minimilsitic UI
@@ -13,7 +13,7 @@ IPL dashboard is a modern web-based platform that renders data for IPL matches.
 
 ## Tech
 
-IPL Dashboard uses the following Tech:
+Interactive IPL Board uses the following Tech:
 
 - [Spring Boot]
 - [Spring Batch]
